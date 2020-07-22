@@ -10,3 +10,21 @@ body{
 #transaction-area{
     display: none;
 }
+.deposit{
+   background-color: slateblue;
+}
+.withdraw{
+  background-color: lightcoral;
+}
+.balance{
+   background-color: orange;
+}
+.status{
+    margin: 0 20px;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+.status:hover{
+    box-shadow: 5px 5px 20px rgb(117, 117, 149);
+}

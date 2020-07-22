@@ -21,9 +21,46 @@
 
      </div>
      <div id ="transaction-area">
-         <h1>Transaction Area</h1>
+         <div class="row">
+             <div class="col-md-4">
+                <div class="deposit status">
+                     <h5>Deposit</h5>
+                     <h2>$ <span id ="currentDeposit">0.0</span></h2>
+                </div>
+             </div>
+             <div class="col-md-4">
+                 <div class="withdraw status">
+                     <h5>Withdraw</h5>
+                    <h2>$ <span id ="current-withdraw">0.0</span></h2>
+                 </div>
+                 
+             </div>
+             <div class="col-md-4">
+                 <div class="balance status">
+                     <h5>Balance</h5>
+                     <h2>$ <span id ='current-balance'>1200.00</span></h2>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposit</h4> <br>
+                 <input id="deposit-amount" type="text" class="form-control" placeholder="$ Enter Your deposit amount"> <br>
+                 <button id="addDeposit" class="btn btn-success">Deposit</button> <br>
+                </div>
+             </div>
+             <div class="col-md-6">
+                 <div class="submit-area">
+                    <h4>Withdraw</h4> <br>
+                 <input id ="withdraw-amount" type="text" class="form-control" placeholder="$ Enter Your Withdraw amount"> <br>
+                 <button id ="addWithdraw" class="btn btn-success">Withdraw</button> <br>
+                 </div>
+             </div>
+         </div>
      </div>
      <script>
+         // login event handler
          const loginBtn = document.getElementById('enter-btn');
          loginBtn.addEventListener('click',function(){
             const loginArea = document.getElementById('login-area');
@@ -31,7 +68,50 @@
             const transactionArea = document.getElementById('transaction-area');
             transactionArea.style.display = "block";
          })
-         document.ge
+         // deposit event handler
+         const addDeposit = document.getElementById('addDeposit');
+          addDeposit.addEventListener('click',function(){
+             const depositAmount = document.getElementById('deposit-amount').value;
+             const depositNumber = parseFloat(depositAmount);
+
+             updateSpanTag('currentDeposit',depositNumber);
+
+             updateSpanTag('current-balance',depositNumber);
+
+             document.getElementById('deposit-amount').value = "";
+          })
+
+          // withdraw event handler
+         const addWithdraw =  document.getElementById('addWithdraw');
+            
+            addWithdraw.addEventListener('click',function(){
+             const withdrawAmount = document.getElementById('withdraw-amount').value;
+              
+               const withdrawNumber = parseFloat(withdrawAmount);
+
+               updateSpanTag('current-withdraw',withdrawNumber);
+
+               substractSpanTag('current-balance',withdrawNumber);
+
+               document.getElementById('withdraw-amount').value = "";
+            })
+          
+          
+          function updateSpanTag(id ,depositNumber){
+             const current= document.getElementById(id).innerText;
+             const  currentNumber = parseFloat(current);
+             const totalBalance = depositNumber+currentNumber;
+             document.getElementById(id).innerText = totalBalance;
+             
+          }
+
+          function substractSpanTag(id,withdrawNumber){
+              const current = document.getElementById(id).innerText;
+              const currentNumber = parseFloat(current);
+              const totalSub = (current-withdrawNumber);
+              document.getElementById(id).innerText = totalSub; 
+
+          }
      </script>
 </body>
 </html>
